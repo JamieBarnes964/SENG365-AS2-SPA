@@ -3,6 +3,8 @@ import './App.css';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import NotFound from "./components/NotFound";
+import AuctionList from "./components/AuctionList";
+import Auction from "./components/Auction"
 
 
 function App() {
@@ -11,6 +13,8 @@ function App() {
       <Router>
         <div>
           <Routes>
+              <Route path="/auctions" element={<AuctionList/>}/>
+              <Route path="/auctions/:id" element={<Auction/>}/>
               <Route path="*" element={<NotFound/>}/>
           </Routes>
         </div>
