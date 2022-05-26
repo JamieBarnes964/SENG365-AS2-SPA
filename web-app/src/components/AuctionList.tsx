@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from "react";
 import CSS from 'csstype';
-import {Paper, AlertTitle, Alert} from "@mui/material";
+import {Paper, AlertTitle, Alert, Toolbar} from "@mui/material";
 import AuctionListObject from "./AuctionListObject";
 import MenuBar from "./MenuBar";
 
@@ -59,7 +59,7 @@ const AuctionList = () => {
 
     return (
         <div>
-            <MenuBar/>
+            <MenuBar auctions={false} login={true} />
             <Paper elevation={3} style={card}>
                 {/*<h1>Auctions: {auctionCount}</h1>*/}
                 <div style={{display:"inline", maxWidth:"965px", minWidth:"320"}}>

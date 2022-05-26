@@ -41,8 +41,8 @@ const AuctionListObject = (props: IAuctionProps) => {
                 setUserImage(encode(response.data))
                 setUserImageType(response.headers["content-type"])
             }, (error) => {
-            setErrorFlag(true)
-            setErrorMessage(error.toString())
+                setErrorFlag(true)
+                setErrorMessage(error.toString())
             })
     }
 

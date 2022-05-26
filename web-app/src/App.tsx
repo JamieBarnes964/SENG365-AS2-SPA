@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NotFound from "./components/NotFound";
 import AuctionList from "./components/AuctionList";
 import Auction from "./components/Auction"
+import LoginRegister from "./components/LoginRegister";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Routes>
               <Route path="/auctions" element={<AuctionList/>}/>
               <Route path="/auctions/:id" element={<Auction/>}/>
+              <Route path="/account" element={<LoginRegister/>}/>
               <Route path="*" element={<NotFound/>}/>
           </Routes>
         </div>

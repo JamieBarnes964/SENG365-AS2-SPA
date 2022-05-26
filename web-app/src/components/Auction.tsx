@@ -153,7 +153,7 @@ const Auction = () => {
 
     return (
         <div>
-            <MenuBar/>
+            <MenuBar auctions={true} login={true} />
             <Grid container justifyContent="center">
                 <Paper elevation={3}
                     sx={{
