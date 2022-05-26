@@ -8,7 +8,7 @@ const MenuBar = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position='sticky'>
+            <AppBar position='static'>
                 <Toolbar>
                     <Button
                         color="inherit" variant="outlined"
