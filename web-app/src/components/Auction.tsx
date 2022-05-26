@@ -31,6 +31,7 @@ import {
 import CSS from "csstype";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import BidListObject  from "./BidListObject";
+import MenuBar from "./MenuBar";
 
 const Auction = () => {
     const {id} = useParams()
@@ -151,132 +152,134 @@ const Auction = () => {
 
 
     return (
-        <Grid container justifyContent="center">
-            <Paper elevation={3}
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'left',
-                    padding: "10px",
-                    margin: "20px",
-                    maxWidth: '1400px',
-                    textOverflow: 'ellipsis'
-                }}
-            >
-                <Box
+        <div>
+            <MenuBar/>
+            <Grid container justifyContent="center">
+                <Paper elevation={3}
                     sx={{
-                        display: 'column',
-                        flexDirection: { xs: 'column', md: 'row' },
+                        display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'left',
-                        m:'20px',
-                    }}
-                >
-                    <Typography variant={"h3"} align='left'>{auction.title}</Typography>
-                    <Typography variant={"h4"} align='left'>{category}</Typography>
-                    <div style={{ width: '100%', display:'inline-flex'}}>
-                        <Box component="div" sx={{display:'inline-flex'}}>
-                            <Avatar alt={auction.sellerFirstName + ' ' + auction.sellerLastName}
-                                    src={`data:${userImageType};base64,${userImage}`}/>
-                        </Box>
-                        <Box component="div" sx={{display:'inline-flex', ml:'10px'}}>
-                            <Typography variant="h6" align='center'>
-                                {auction.sellerFirstName + ' ' + auction.sellerLastName}
-                            </Typography>
-                        </Box>
-                    </div>
-
-                </Box>
-
-                <Box sx={{
-                    ml: "20px",
-                    display: "block",
-                    width: "fit-content"
-                }}>
-                    <Chip icon={<AccessTimeIcon/>} label={endDate()}/>
-                </Box>
-
-
-                <Box
-                    sx={{
-                        display: 'inline-flex',
-                        flexDirection: { xs: 'column', md: 'row' },
-                        alignItems: 'left',
-                    }}
-                >
-                    {/*<Box*/}
-                    {/*    // elevation={5}*/}
-                    {/*    component="img"*/}
-                    {/*    sx={{*/}
-                    {/*        // display: 'flex',*/}
-                    {/*        // flexDirection: { xs: 'column', md: 'row' },*/}
-                    {/*        alignItems: 'center',*/}
-                    {/*        bgcolor: 'background.paper',*/}
-                    {/*        m:'20px',*/}
-                    {/*        // borderRadius: '12px',*/}
-                    {/*        // width: { xs: '100%', md: '600px'},*/}
-                    {/*        height: { xs: 'auto', md: '500px'},*/}
-                    {/*        objectFit: 'hide',*/}
-                    {/*    }}*/}
-
-                    {/*    alt="Auction Image"*/}
-                    {/*    src={`data:${auctionImageType};base64,${auctionImage}`}*/}
-                    {/*/>*/}
-                    <Card
-                            sx={{
-                                // display: 'flex',
-                                // flexDirection: { xs: 'column', md: 'row' },
-                                alignItems: 'center',
-                                bgcolor: 'background.paper',
-                                m:'20px',
-                                // borderRadius: '12px',
-                                // width: { xs: '100%', md: '600px'},
-                                // height: { xs: 'auto', md: '500px'},
-                                maxHeight: { xs: 'auto', md: '500px'},
-                                objectFit: 'fill',
-                            }}
-                            object-fit='fill'
-                    >
-                        <CardMedia
-                            component='img'
-                            sx={{objectFit: 'fill'}}
-                            src={`data:${auctionImageType};base64,${auctionImage}`}
-                            object-fit='fill'
-                        />
-                    </Card>
-
-                    <Paper elevation={5} sx={{
                         padding: "10px",
                         margin: "20px",
-                        ml: { xs:'20px', md:'0px'},
+                        maxWidth: '1400px',
+                        textOverflow: 'ellipsis'
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'column',
+                            flexDirection: { xs: 'column', md: 'row' },
+                            alignItems: 'left',
+                            m:'20px',
+                        }}
+                    >
+                        <Typography variant={"h3"} align='left'>{auction.title}</Typography>
+                        <Typography variant={"h4"} align='left'>{category}</Typography>
+                        <div style={{ width: '100%', display:'inline-flex'}}>
+                            <Box component="div" sx={{display:'inline-flex'}}>
+                                <Avatar alt={auction.sellerFirstName + ' ' + auction.sellerLastName}
+                                        src={`data:${userImageType};base64,${userImage}`}/>
+                            </Box>
+                            <Box component="div" sx={{display:'inline-flex', ml:'10px'}}>
+                                <Typography variant="h6" align='center'>
+                                    {auction.sellerFirstName + ' ' + auction.sellerLastName}
+                                </Typography>
+                            </Box>
+                        </div>
+
+                    </Box>
+
+                    <Box sx={{
+                        ml: "20px",
                         display: "block",
-                        // maxWidth: "100%",
-                        width: { xs: 'auto', md: "300px"},
-                        height: '500px',
-                        maxHeight: "500px",
-                        overflow:'auto'
+                        width: "fit-content"
                     }}>
-                        <Typography variant="h5" align='left'>
-                            {bids.length === 0 ? 'No Bids' : `${bids.length} Bid${bids.length === 1 ? '' : 's'}`}
-                        </Typography>
-                        <List>{bid_rows()}</List>
+                        <Chip icon={<AccessTimeIcon/>} label={endDate()}/>
+                    </Box>
+
+
+                    <Box
+                        sx={{
+                            display: 'inline-flex',
+                            flexDirection: { xs: 'column', md: 'row' },
+                            alignItems: 'left',
+                        }}
+                    >
+                        {/*<Box*/}
+                        {/*    // elevation={5}*/}
+                        {/*    component="img"*/}
+                        {/*    sx={{*/}
+                        {/*        // display: 'flex',*/}
+                        {/*        // flexDirection: { xs: 'column', md: 'row' },*/}
+                        {/*        alignItems: 'center',*/}
+                        {/*        bgcolor: 'background.paper',*/}
+                        {/*        m:'20px',*/}
+                        {/*        // borderRadius: '12px',*/}
+                        {/*        // width: { xs: '100%', md: '600px'},*/}
+                        {/*        height: { xs: 'auto', md: '500px'},*/}
+                        {/*        objectFit: 'hide',*/}
+                        {/*    }}*/}
+
+                        {/*    alt="Auction Image"*/}
+                        {/*    src={`data:${auctionImageType};base64,${auctionImage}`}*/}
+                        {/*/>*/}
+                        <Card
+                                sx={{
+                                    // display: 'flex',
+                                    // flexDirection: { xs: 'column', md: 'row' },
+                                    alignItems: 'center',
+                                    bgcolor: 'background.paper',
+                                    m:'20px',
+                                    // borderRadius: '12px',
+                                    // width: { xs: '100%', md: '600px'},
+                                    // height: { xs: 'auto', md: '500px'},
+                                    maxHeight: { xs: 'auto', md: '500px'},
+                                    objectFit: 'fill',
+                                    flexGrow: 1
+                                }}
+                                object-fit='fill'
+                        >
+                            <CardMedia
+                                component='img'
+                                sx={{objectFit: 'fill'}}
+                                src={`data:${auctionImageType};base64,${auctionImage}`}
+                                object-fit='fill'
+                            />
+                        </Card>
+
+                        <Paper elevation={5} sx={{
+                            padding: "10px",
+                            margin: "20px",
+                            ml: { xs:'20px', md:'0px'},
+                            display: "block",
+                            // maxWidth: "100%",
+                            width: { xs: 'auto', md: "300px"},
+                            height: '500px',
+                            maxHeight: "500px",
+                            overflow:'auto'
+                        }}>
+                            <Typography variant="h5" align='left'>
+                                {bids.length === 0 ? 'No Bids' : `${bids.length} Bid${bids.length === 1 ? '' : 's'}`}
+                            </Typography>
+                            <List>{bid_rows()}</List>
+                        </Paper>
+                    </Box>
+
+                    <Paper elevation={3} sx={{
+                        padding: "10px",
+                        margin: "20px",
+                        display: "block",
+                        width: "auto",
+                        height: "auto",
+                    }}>
+                        <Typography variant="h5" align='left'>Description</Typography>
+                        <Typography variant='body1' align='left'>{auction.description}</Typography>
                     </Paper>
-                </Box>
 
-                <Paper elevation={3} sx={{
-                    padding: "10px",
-                    margin: "20px",
-                    display: "block",
-                    width: "auto",
-                    height: "auto",
-                }}>
-                    <Typography variant="h5" align='left'>Description</Typography>
-                    <Typography variant='body1' align='left'>{auction.description}</Typography>
                 </Paper>
-
-            </Paper>
-        </Grid>
-
-
+            </Grid>
+        </div>
     )
 }
 

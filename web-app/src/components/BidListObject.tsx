@@ -56,12 +56,16 @@ const BidListObject = (props: IBidProps) => {
 
 
     return (
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="flex-start" >
             <ListItemAvatar>
                 <Avatar alt={user.firstName + ' ' + user.lastName}
                         src={`data:${userImageType};base64,${userImage}`}/>
             </ListItemAvatar>
-            <ListItemText primary={'$' + bid.amount.toString()} secondary={user.firstName + ' ' + user.lastName} />
+            <ListItemText
+                sx={{textOverflow: 'ellipsis', multiline:'false'}}
+                primary={'$' + bid.amount.toString()}
+                secondary={user.firstName + ' ' + user.lastName}
+            />
         </ListItem>
     )
 }

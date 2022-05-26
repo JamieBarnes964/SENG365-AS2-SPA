@@ -3,6 +3,7 @@ import React from "react";
 import CSS from 'csstype';
 import {Paper, AlertTitle, Alert} from "@mui/material";
 import AuctionListObject from "./AuctionListObject";
+import MenuBar from "./MenuBar";
 
 const AuctionList = () => {
     const [errorFlag, setErrorFlag] = React.useState(false);
@@ -57,18 +58,21 @@ const AuctionList = () => {
     }
 
     return (
-        <Paper elevation={3} style={card}>
-            {/*<h1>Auctions: {auctionCount}</h1>*/}
-            <div style={{display:"inline", maxWidth:"965px", minWidth:"320"}}>
-                {errorFlag?
-                    <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        {errorMessage}
-                    </Alert>
-                    :""}
-                {auction_rows()}
-            </div>
-        </Paper>
+        <div>
+            <MenuBar/>
+            <Paper elevation={3} style={card}>
+                {/*<h1>Auctions: {auctionCount}</h1>*/}
+                <div style={{display:"inline", maxWidth:"965px", minWidth:"320"}}>
+                    {errorFlag?
+                        <Alert severity="error">
+                            <AlertTitle>Error</AlertTitle>
+                            {errorMessage}
+                        </Alert>
+                        :""}
+                    {auction_rows()}
+                </div>
+            </Paper>
+        </div>
     )
 }
 
