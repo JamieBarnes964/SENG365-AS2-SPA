@@ -45,6 +45,22 @@ const MenuBar = (props: IMenuBarProps) => {
         }
     }, [])
 
+    const logOut = () => {
+        if (authData.token === "") {
+            return;
+        }
+
+        axios.post('http://localhost:4941/api/v1/users/logout',
+            {},
+            {headers:{"X-Authorization":authData.token}})
+            .then((response) => {
+                clearAuth()
+            }, (error) => {
+                setErrorFlag(true)
+                setErrorMessage(error.toString())
+            })
+    }
+
     const getUser = () => {
         axios.get('http://localhost:4941/api/v1/users/' + authData.userId.toString())
             .then((response) => {
@@ -188,7 +204,7 @@ const MenuBar = (props: IMenuBarProps) => {
                     Profile
                 </MenuItem>
                 <MenuItem
-                    onClick={clearAuth}
+                    onClick={logOut}
                 >
                     <ListItemIcon>
                         <Logout fontSize="small" />

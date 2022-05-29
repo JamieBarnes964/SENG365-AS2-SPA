@@ -270,6 +270,25 @@ const LoginRegister = () => {
         }
     }
 
+    const logOut = () => {
+        if (authData.token === "") {
+            return;
+        }
+        console.log("test1")
+
+        axios.post('http://localhost:4941/api/v1/users/logout',
+            {},
+            {headers:{"X-Authorization":authData.token}})
+            .then((response) => {
+                console.log("test2")
+                clearAuth()
+            }, (error) => {
+                console.log("test3")
+                setErrorFlag(true)
+                setErrorMessage(error.toString())
+            })
+    }
+
 
     const [activeTab, setActiveTab] = React.useState(0);
     const updateActiveTabState = (event: React.SyntheticEvent, newValue: number) => {
@@ -461,7 +480,7 @@ const LoginRegister = () => {
                             >Profile</Button>
                             <Button
                                 variant="contained" color="error"
-                                onClick={clearAuth} sx={{mt:'20px'}}
+                                onClick={logOut} sx={{mt:'20px'}}
                             >Logout</Button>
                         </Box>
                     }
