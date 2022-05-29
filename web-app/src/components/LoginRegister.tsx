@@ -13,13 +13,15 @@ import {
     TextField,
     Button,
     Snackbar,
-    Avatar
+    Avatar, InputAdornment, IconButton, FormControl, OutlinedInput, InputLabel, FormHelperText
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {validate} from "email-validator";
 import {useAuthStore} from "../store";
 import MenuBar from "./MenuBar";
 import {encode} from "base64-arraybuffer";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+
 
 
 interface TabPanelProps {
@@ -133,11 +135,18 @@ const LoginRegister = () => {
     }
 
     const [password, setPassword] = React.useState("")
+    const [showPassword, setShowPassword] = React.useState<boolean>(false)
     const [passwordError, setPasswordError] = React.useState(false)
     const [passwordMessage, setPasswordMessage] = React.useState("")
     const updatePasswordState = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
     }
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
 
 
     const [snackOpen, setSnackOpen] = React.useState(false)
@@ -287,7 +296,7 @@ const LoginRegister = () => {
                 </Alert>
             </Snackbar>
 
-            <MenuBar auctions={true} login={false} />
+            <MenuBar title="Account" login={false} />
 
             <Grid container justifyContent="center">
                 <Paper elevation={5}
@@ -317,16 +326,54 @@ const LoginRegister = () => {
                                         value={email}
                                         onChange={updateEmailState}
                                         sx={{mb: "0px"}}/>
-                                    <TextField
-                                        error={passwordError}
-                                        id="loginPasswordInput"
-                                        type="password"
-                                        label="Password"
-                                        variant="outlined"
-                                        helperText={passwordError ? passwordMessage : " "}
-                                        value={password}
-                                        onChange={updatePasswordState}
-                                        sx={{mb: "0px"}}/>
+
+                                    {/*<TextField*/}
+                                    {/*    error={passwordError}*/}
+                                    {/*    id="loginPasswordInput"*/}
+                                    {/*    type={showPassword ? "text" : "password"}*/}
+                                    {/*    label="Password"*/}
+                                    {/*    variant="outlined"*/}
+                                    {/*    helperText={passwordError ? passwordMessage : " "}*/}
+                                    {/*    value={password}*/}
+                                    {/*    onChange={updatePasswordState}*/}
+                                    {/*    endAdornment={*/}
+                                    {/*        <InputAdornment position="end">*/}
+                                    {/*            <IconButton*/}
+                                    {/*                aria-label="toggle password visibility"*/}
+                                    {/*                onClick={handleClickShowPassword}*/}
+                                    {/*                onMouseDown={handleMouseDownPassword}*/}
+                                    {/*                edge="end"*/}
+                                    {/*            >*/}
+                                    {/*                {showPassword ? <VisibilityOff /> : <Visibility />}*/}
+                                    {/*            </IconButton>*/}
+                                    {/*        </InputAdornment>*/}
+                                    {/*    }*/}
+                                    {/*    sx={{mb: "0px"}}/>*/}
+
+                                    <FormControl  variant="outlined" >
+                                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                        <OutlinedInput
+                                            id="outlined-adornment-password"
+                                            error={passwordError}
+                                            type={showPassword ? "text" : "password"}
+                                            label="Password"
+                                            value={password}
+                                            onChange={updatePasswordState}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                        edge="end"
+                                                    >
+                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                            sx={{mb: "0px"}}/>
+                                        <FormHelperText>{passwordError ? passwordMessage : " "}</FormHelperText>
+                                    </FormControl>
                                     <Button
                                         variant="contained" color="primary"
                                         onClick={login}

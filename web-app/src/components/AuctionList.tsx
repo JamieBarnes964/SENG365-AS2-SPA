@@ -59,7 +59,7 @@ const AuctionList = () => {
 
     return (
         <div>
-            <MenuBar auctions={false} login={true} />
+            <MenuBar title="Auctions" login={true} />
             <Paper elevation={3} style={card}>
                 {/*<h1>Auctions: {auctionCount}</h1>*/}
                 <div style={{display:"inline", maxWidth:"965px", minWidth:"320"}}>

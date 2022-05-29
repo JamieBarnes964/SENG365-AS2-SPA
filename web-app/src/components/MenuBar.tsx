@@ -12,19 +12,19 @@ import {
     Typography,
     Menu,
     MenuItem,
-    ListItemIcon, Chip
+    ListItemIcon, Chip, Divider
 } from "@mui/material";
 import {encode} from "base64-arraybuffer";
-import {Logout, Settings, AccountCircle} from "@mui/icons-material";
+import {Logout, Settings, AccountCircle, Discount, Article, Menu as MenuIcon} from "@mui/icons-material";
 
 
 interface IMenuBarProps {
-    auctions: boolean,
+    title: string,
     login: boolean,
 }
 
 const MenuBar = (props: IMenuBarProps) => {
-    const {auctions, login} = props;
+    const {title, login} = props;
     const navigate = useNavigate();
     const authData = useAuthStore(state => state.authData)
     const clearAuth = useAuthStore(state => state.clearAuth)
@@ -74,27 +74,49 @@ const MenuBar = (props: IMenuBarProps) => {
             })
     }
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+    const [accountAnchorEl, setAccountAnchorEl] = React.useState<null | HTMLElement>(null);
+    const openAccountMenu = Boolean(accountAnchorEl);
+    const accountHandleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAccountAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
-        setAnchorEl(null);
+    const accountHandleClose = () => {
+        setAccountAnchorEl(null);
+    };
+
+    const [navigationAnchorEl, setNavigationAnchorEl] = React.useState<null | HTMLElement>(null);
+    const openNavigationMenu = Boolean(navigationAnchorEl);
+    const navigationHandleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setNavigationAnchorEl(event.currentTarget);
+    };
+    const navigationHandleClose = () => {
+        setNavigationAnchorEl(null);
     };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="sticky">
                 <Toolbar>
-                    { auctions &&
-                        <Button
-                            color="inherit" variant="outlined"
-                            onClick={() => navigate('/auctions')}
-                        >
-                            Auctions
-                        </Button>
-                    }
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        onClick={navigationHandleClick}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    {/*{ auctions &&*/}
+                    {/*    <Button*/}
+                    {/*        color="inherit" variant="outlined"*/}
+                    {/*        onClick={() => navigate('/auctions')}*/}
+                    {/*    >*/}
+                    {/*        Auctions*/}
+                    {/*    </Button>*/}
+                    {/*}*/}
+                    <Typography variant="h5">
+                        {title}
+                    </Typography>
                     <Box sx={{ flexGrow: 1 }}/>
 
                     { login &&
@@ -123,23 +145,42 @@ const MenuBar = (props: IMenuBarProps) => {
                                 label={user.firstName + ' ' + user.lastName}
                                 // variant="outlined"
                                 color="primary"
-                                onClick={handleClick}
+                                onClick={accountHandleClick}
                             />
                         )
                     }
                 </Toolbar>
             </AppBar>
+
+            {/* Account Menu */}
             <Menu
-                anchorEl={anchorEl}
+                anchorEl={accountAnchorEl}
                 id="account-menu"
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
+                open={openAccountMenu}
+                onClose={accountHandleClose}
+                onClick={accountHandleClose}
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem
-                    onClick={() => {navigate('/account/details')}}
+                    onClick={() => navigate('/account/details')}
+                >
+                    <ListItemIcon>
+                        <Article fontSize="small" />
+                    </ListItemIcon>
+                    My Auctions
+                </MenuItem>
+                <MenuItem
+                    onClick={() => navigate('/account/details')}
+                >
+                    <ListItemIcon>
+                        <Discount fontSize="small" />
+                    </ListItemIcon>
+                    My Bids
+                </MenuItem>
+                <Divider variant="middle"/>
+                <MenuItem
+                    onClick={() => navigate('/account/details')}
                 >
                     <ListItemIcon>
                         <AccountCircle fontSize="small" />
@@ -153,6 +194,27 @@ const MenuBar = (props: IMenuBarProps) => {
                         <Logout fontSize="small" />
                     </ListItemIcon>
                     Logout
+                </MenuItem>
+            </Menu>
+
+            {/* Navigation Menu*/}
+            <Menu
+                anchorEl={navigationAnchorEl}
+                open={openNavigationMenu}
+                onClose={navigationHandleClose}
+                onClick={navigationHandleClose}
+            >
+                <MenuItem
+                    onClick={() => navigate('/auctions')}
+                >
+                    Auctions
+                </MenuItem>
+                <Divider variant="middle"/>
+                <MenuItem
+                    disabled = {authData.token === ''}
+                    onClick={() => navigate('/auctions/create')}
+                >
+                    Create Auction
                 </MenuItem>
             </Menu>
         </Box>
