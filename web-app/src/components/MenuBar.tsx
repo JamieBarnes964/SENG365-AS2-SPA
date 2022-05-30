@@ -180,7 +180,10 @@ const MenuBar = (props: IMenuBarProps) => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem
-                    onClick={() => navigate('/account/details')}
+                    onClick={() => {
+                        const params = {sellerId: authData.userId}
+                        navigate(axios.getUri({url: '/auctions', params}))
+                    }}
                 >
                     <ListItemIcon>
                         <Article fontSize="small" />
@@ -188,7 +191,10 @@ const MenuBar = (props: IMenuBarProps) => {
                     My Auctions
                 </MenuItem>
                 <MenuItem
-                    onClick={() => navigate('/account/details')}
+                    onClick={() => {
+                        const params = {bidderId: authData.userId}
+                        navigate(axios.getUri({url: '/auctions', params}))
+                    }}
                 >
                     <ListItemIcon>
                         <Discount fontSize="small" />

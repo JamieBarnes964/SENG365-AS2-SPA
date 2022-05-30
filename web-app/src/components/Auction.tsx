@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {Link, useParams, useNavigate} from 'react-router-dom';
+import {Link, useParams, useNavigate, useSearchParams} from 'react-router-dom';
 import {decode, encode} from "base64-arraybuffer";
 import {
     Button,

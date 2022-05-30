@@ -61,9 +61,10 @@ const AuctionListObject = (props: IAuctionProps) => {
 
 
     const auctionCardStyles: CSS.Properties = {
-        display: "block",
+        // display: "block",
         maxHeight: "400px",
-        minWidth: "1000px",
+        width: "auto",
+        // minWidth: "1000px",
         margin: "10px",
         padding: "0px"
     }
