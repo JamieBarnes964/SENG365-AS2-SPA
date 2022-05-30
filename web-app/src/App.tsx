@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 
 import NotFound from "./components/NotFound";
 import AuctionList from "./components/AuctionList";
@@ -21,6 +21,7 @@ function App() {
               <Route path="/auctions/:id" element={<Auction/>}/>
               <Route path="/account" element={<LoginRegister/>}/>
               <Route path="/account/details" element={<AccountDetails/>}/>
+              <Route path="" element={<Navigate to={"/auctions"}/>}/>
               <Route path="*" element={<NotFound/>}/>
           </Routes>
         </div>
