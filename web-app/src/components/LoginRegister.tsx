@@ -80,6 +80,7 @@ const LoginRegister = () => {
         if (authData.token != "") {
             getUser();
             getUserImage();
+            navigate('/account/details')
         }
     }, [authData])
 
@@ -476,8 +477,8 @@ const LoginRegister = () => {
                             </div>
                             <Button
                                 variant="contained" color="primary"
-                                onClick={() => navigate('/account/profile')} sx={{mt:'20px'}}
-                            >Profile</Button>
+                                onClick={() => navigate('/account/details')} sx={{mt:'20px'}}
+                            >Account Details</Button>
                             <Button
                                 variant="contained" color="error"
                                 onClick={logOut} sx={{mt:'20px'}}

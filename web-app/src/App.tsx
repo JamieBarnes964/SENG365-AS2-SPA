@@ -7,6 +7,7 @@ import AuctionList from "./components/AuctionList";
 import Auction from "./components/Auction"
 import LoginRegister from "./components/LoginRegister";
 import CreateAuction from "./components/CreateAuction";
+import AccountDetails from "./components/AccountDetails";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route path="/auctions/create" element={<CreateAuction/>}/>
               <Route path="/auctions/:id" element={<Auction/>}/>
               <Route path="/account" element={<LoginRegister/>}/>
+              <Route path="/account/details" element={<AccountDetails/>}/>
               <Route path="*" element={<NotFound/>}/>
           </Routes>
         </div>

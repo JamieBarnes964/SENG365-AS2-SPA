@@ -192,6 +192,9 @@ const CreateAuction = () => {
                         )
                         .then(() => navigate('/auctions/' + response.data.auctionId.toString()))
 
+                }, (error) => {
+                    setErrorFlag(true)
+                    setErrorMessage(error.toString())
                 })
                 .then(() => {
 

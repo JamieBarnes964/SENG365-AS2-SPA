@@ -55,6 +55,7 @@ const MenuBar = (props: IMenuBarProps) => {
             {headers:{"X-Authorization":authData.token}})
             .then((response) => {
                 clearAuth()
+                navigate('/account')
             }, (error) => {
                 setErrorFlag(true)
                 setErrorMessage(error.toString())
