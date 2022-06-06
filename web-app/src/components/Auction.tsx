@@ -689,6 +689,21 @@ const Auction = () => {
                             <Typography variant='body1' align='left'>{auction.description}</Typography>
                         </Paper>
 
+                        <div style={{display:'flex', flexDirection:'row'}}>
+                            <Button variant={'contained'} sx={{m:'10px'}}
+                                    onClick={() => {
+                                        const params = {categoryIds: auction.categoryId}
+                                        navigate(axios.getUri({url: '/auctions', params}))
+                                    }}
+                            >Similar Auctions</Button>
+                            <Button variant={'contained'} sx={{m:'10px'}}
+                                    onClick={() => {
+                                        const params = {sellerId: auction.sellerId}
+                                        navigate(axios.getUri({url: '/auctions', params}))
+                                    }}
+                            >Seller's Other Auctions</Button>
+                        </div>
+
                         { authData.userId === auction.sellerId &&
                             <div style={{display:'flex', flexDirection:'row'}}>
                                 <Button variant='contained' color='error' sx={{m:'10px', mr:'20px'}}
